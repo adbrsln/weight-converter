@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <style>
+        body{
+            margin-top:70px;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="display-4 text-center mb-3">Weight Converter</h1>
+            <form>
+                <div class="form-group">
+                    <input id= "lbsInput"
+                    type="number" 
+                    class="form-control form-control-lg" 
+                    placeholder="Enter Kilograms...">
+                </div>
+            </form>
+            <div id="output">
+                <div class="card card-primary mb-2">
+                    <div class="card-block">
+                        <h4>Grams:</h4>
+                        <div id="gramsOutput"></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="copyToClipboard('gramsOutput')">Copy</button>
+                </div>
+                <div class="card card-success mb-2">
+                    <div class="card-block">
+                        <h4>Kilograms:</h4>
+                        <div id="pOutput"></div>
+                    </div>
+                    <button class="btn btn-success" onclick="copyToClipboard('pOutput')">Copy</button>
+                </div>
+                <div class="card card-danger mb-2">
+                    <div class="card-block">
+                        <h4>Ounces:</h4>
+                        <div id="ouncesOutput"></div>                        
+                    </div>
+                    <button class="btn btn-danger" onclick="copyToClipboard('ouncesOutput')">Copy</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('output').style.visibility ='hidden';
+        document.getElementById('lbsInput').addEventListener('input', function(e){
+            document.getElementById('output').style.visibility ='visible';
+            let lbs = e.target.value;
+            document.getElementById('gramsOutput').innerHTML = lbs*1000;
+            document.getElementById('pOutput').innerHTML = lbs*2.2046;
+            document.getElementById('ouncesOutput').innerHTML = lbs*35.274;
+        });
+        function copyToClipboard(elementId) { 
+            var aux = document.createElement("input"); aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+        document.body.appendChild(aux); aux.select(); document.execCommand("copy"); document.body.removeChild(aux); 
+        }
+    </script>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+</body>
+
+</html>
